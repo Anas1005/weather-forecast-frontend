@@ -1,21 +1,22 @@
 import CurrentWeather from "./CurrentWeather/CurrentWeather";
-import '../src/style.css'
+import "../src/style.css";
 // import TempInfo from "./Tempinfo/TempInfo";
 import ExtraInfo from "./ExtraInfo/ExtraInfo";
 import WeatherTab from "./WeatherTab/WeatherTab";
+import Button from "./ButtonPro/Button";
 // import CountrySelection from "./CountrySelect/CountrySelection";
 
-export default function WeatherApp(){
-    return(
-        <>
-        {/* <CountrySelection></CountrySelection> */}
-        <div className="containerBox">
-            <CurrentWeather></CurrentWeather>
-            {/* <TempInfo></TempInfo> */}
-            <ExtraInfo></ExtraInfo>
-            <WeatherTab></WeatherTab>
-        </div>
-        </>
-
-    )
+export default function WeatherApp() {
+  return (
+    <>
+      {/* <CountrySelection></CountrySelection> */}
+      <div className="containerBox">
+        <CurrentWeather></CurrentWeather>
+        {/* <TempInfo></TempInfo> */}
+        <ExtraInfo></ExtraInfo>
+        <WeatherTab></WeatherTab>
+        <Button />
+      </div>
+    </>
+  );
 }
