@@ -34,7 +34,7 @@ const Button = () => {
     <div>
       <div>
         {error && <p className="error">{error}</p>}
-        {prediction && <p>Predicted Price: ${prediction.toFixed(2)}</p>}
+        {prediction && <p>Predicted Temperature: {prediction.toFixed(2)}</p>}
       </div>
       {currentWeather.ready && <button onClick={handleSubmit}>submit</button>}
     </div>
