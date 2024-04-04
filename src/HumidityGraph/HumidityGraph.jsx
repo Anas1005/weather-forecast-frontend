@@ -6,7 +6,7 @@ import { Navigation } from "swiper";
 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const formatXAxis = (data) => {
-    const date = new Date(data * 1000);
+    const date = new Date(data * 1000 - 86400*1000*6);
     const dayOfWeek = daysOfWeek[date.getDay()];
     const formattedDate = `${date.getDate()}/${date.getMonth() + 1}`;
     return `${dayOfWeek}, ${formattedDate}`;

@@ -67,7 +67,7 @@ export default function ExtraInfo(){
                 <p className="extra-info-text">
                    Humidity <br></br> {
                     currentWeather.ready ?
-                        `${currentWeather.humidity} %` :"Loading...."
+                        `${currentWeather.humidity} %` : <div className="animate-spin rounded-full h-[3rem] w-[3rem] border-t-2 border-b-2 border-gray-900"></div>
                     }
                 </p>
             </div>
@@ -76,7 +76,7 @@ export default function ExtraInfo(){
                 <p className="extra-info-text">
                    Pressure <br></br> {
                     currentWeather.ready ?
-                        `${currentWeather.pressure} Pa` :"Loading...."
+                        `${currentWeather.pressure} Pa` : <div className="animate-spin rounded-full h-[3rem] w-[3rem] border-t-2 border-b-2 border-gray-900"></div>
                     }
                     {/* (<WindDirectionText degree={deg}></WindDirectionText>) */}
                 </p>

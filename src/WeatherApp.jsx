@@ -20,3 +20,5 @@ export default function WeatherApp() {
     </>
   );
 }
+
+// bg-opacity-80 backdrop-blur-lg p-4 rounded-lg border border-gray-300 border-opacity-30 w-[40vw]

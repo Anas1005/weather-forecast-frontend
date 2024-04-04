@@ -5,13 +5,18 @@ import { motion } from 'framer-motion';
 export default function CurrentWeather() {
   const { currentWeather } = useWeatherInfoContext();
 
- 
-    return (
-      <div className="weather">
-        {"Rourkela"} &nbsp;/
-        {/* {<CurrentWeatherIcon weatherState={weatherState}></CurrentWeatherIcon>} */}
-        <span>{currentWeather.ready ? `${currentWeather.temp}`:"Loading....." } &deg;</span>
-      </div>
-    );
-  }
-
+  return (
+    <div className="weather">
+      {"Rourkela"} &nbsp;/
+      {/* Use conditional rendering to display either temperature or loader */}
+      {currentWeather.ready ? (
+        <>
+          {/* <CurrentWeatherIcon weatherState={weatherState} /> */}
+          <span>{currentWeather.temp} &deg;</span>
+        </>
+      ) : (
+        <div className="animate-spin rounded-full h-[3rem] w-[3rem] border-t-2 border-b-2 border-gray-900"></div>
+      )}
+    </div>
+  );
+}
