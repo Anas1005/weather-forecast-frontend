@@ -4,10 +4,11 @@ import WeatherProvider from "./WeatherProvider/WeatherProvider";
 
 function App() {
   return (
+    <div className="">
     <WeatherProvider>
       <WeatherApp />
-      
     </WeatherProvider>
+    </div>
   );
 }
 

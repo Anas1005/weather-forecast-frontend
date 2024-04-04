@@ -1,42 +1,63 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useWeatherInfoContext } from "../WeatherProvider/WeatherProvider";
 
 const Button = () => {
-  const { features, currentWeather } = useWeatherInfoContext();
-  console.log(features);
+  const { prediction, loading, error, currentWeather, handleSubmit } = useWeatherInfoContext();
 
-  const [prediction, setPrediction] = useState(null);
-  const [error, setError] = useState(null);
+  // const [prediction, setPrediction] = useState(null);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
 
-  //   const handleInputChange = (event) => {
-  //     const { name, value } = event.target;
-  //     setFeatures({ ...features, [name]: parseFloat(value) || "" }); // Ensure numerical values
-  //   };
+  // const handleSubmit = async () => {
+  //   setLoading(true); // Set loading to true while predicting
+  //   try {
+  //     const response = await axios.post(
+  //       "https://weather-prediction-xfpl.onrender.com/predict",
+  //       features
+  //     );
+  //     setPrediction(response.data.prediction);
+  //     setError(null);
+  //   } catch (error) {
+  //     setError(error.response?.data?.error || "Error making prediction");
+  //   } finally {
+  //     setLoading(false); // Set loading to false after prediction
+  //   }
+  // };
 
-  const handleSubmit = async () => {
-    console.log(features);
-    try {
-      const response = await axios.post(
-        "https://weather-prediction-xfpl.onrender.com/predict",
-        features
-      );
-      console.log(response);
-      setPrediction(response.data.prediction);
-      setError(null);
-    } catch (error) {
-      console.error(error);
-      setError(error.response?.data?.error || "Error making prediction");
-    }
-  };
   return (
-    <div>
-      <div>
-        {error && <p className="error">{error}</p>}
-        {prediction && <p>Predicted Temperature: {prediction.toFixed(2)}</p>}
+    <div className="mx-auto text-center"> 
+    
+    
+      {currentWeather.ready && (
+        <div>
+        <button
+          onClick={handleSubmit}
+          className={`bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition duration-300 ${
+            loading ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
+          disabled={loading}
+        >
+          {loading ? (
+            <div className="inline-block animate-spin mr-2 h-5 w-5 border-t-2 border-b-2 border-white rounded-full"></div>
+          ) : (
+            "Predict"
+          )}
+        </button>
+        <div>
+        {error && <p className="text-red-500">{error}</p>}
+        {prediction && (
+          <p className="text-lg font-semibold text-blue-500">
+            Predicted Temperature: {prediction.toFixed(2)} °C
+          </p>
+        )}
       </div>
-      {currentWeather.ready && <button onClick={handleSubmit}>submit</button>}
+      </div>
+
+
+        
+        
+      )}
     </div>
   );
 };

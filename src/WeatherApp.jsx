@@ -10,7 +10,7 @@ export default function WeatherApp() {
   return (
     <>
       {/* <CountrySelection></CountrySelection> */}
-      <div className="containerBox">
+      <div className="containerBox ">
         <CurrentWeather></CurrentWeather>
         {/* <TempInfo></TempInfo> */}
         <ExtraInfo></ExtraInfo>

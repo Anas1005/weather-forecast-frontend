@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import { io } from "socket.io-client";
+import axios from "axios";
 
 export const WeatherContext = createContext({});
 
@@ -17,6 +18,9 @@ export default function WeatherProvider({ children }) {
   const [currentWeather, setCurrrentWeather] = useState({ ready: false });
   const [features, setFeatures] = useState(null);
   const [dailyWeather, setDailyWeather] = useState([]);
+  const [prediction, setPrediction] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [countryName, setCountryName] = useState("Rourkela");
   useEffect(() => {
     console.log("Inside UE...");
@@ -43,6 +47,19 @@ export default function WeatherProvider({ children }) {
         date: new Date(),
         coordinates: { lat: 22.2309, lon: 84.8679 },
       });
+
+      const data = {
+        maxtempC: weatherData.temperature,
+        mintempC: weatherData.temperature,
+        cloudcover: 41,
+        humidity: weatherData?.humidity,
+        sunHour: 13.3,
+        HeatIndexC: 41,
+        precipMM: 0,
+        pressure: weatherData.pressure,
+        windspeedKmph: 13,
+      }
+      handlePredict(data);
       setFeatures({
         maxtempC: weatherData.temperature,
         mintempC: weatherData.temperature,
@@ -102,9 +119,33 @@ export default function WeatherProvider({ children }) {
     getWeatherInfo();
   }, [getWeatherInfo]);
 
+
+  
+  const handlePredict = async (data = features) => {
+    console.log("Data", data)
+    setLoading(true); // Set loading to true while predicting
+    try {
+      const response = await axios.post(
+        "https://weather-prediction-xfpl.onrender.com/predict",
+        data
+      );
+      setPrediction(response.data.prediction);
+      setError(null);
+    } catch (error) {
+      setError(error.response?.data?.error || "Error making prediction");
+    } finally {
+      setLoading(false); // Set loading to false after prediction
+    }
+  };
+
+  const handleSubmit = async () => {
+    handlePredict();
+  };
+
+
   return (
     <WeatherContext.Provider
-      value={{ currentWeather, features, dailyWeather, setCountryName }}
+      value={{ currentWeather, prediction, loading, error, handleSubmit, dailyWeather, setCountryName }}
     >
       {children}
     </WeatherContext.Provider>
