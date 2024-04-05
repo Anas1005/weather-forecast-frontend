@@ -19,7 +19,7 @@ const CustomizedDot = ({ payload, cx, cy }) => (
 );
 
 const CustomizedLabel = ({ x, y, value }) => (
-    <text x={x} y={y} dy={-4} fontSize={15} fontWeight={600} textAnchor="middle">{value}°</text>
+    <text x={x} y={y} dy={-4} fontSize={17.5} fontWeight={600} textAnchor="middle">{value}°</text>
 );
 
 function Linegraph({ num }) {
@@ -40,7 +40,7 @@ function Linegraph({ num }) {
                 bottom: 10
             }}
         >
-            <XAxis dataKey="dt" fontSize={15} fontWeight={600} tickFormatter={formatXAxis}></XAxis>
+            <XAxis dataKey="dt" fontSize={17.5} fontWeight={600} tickFormatter={formatXAxis}></XAxis>
             <Line dataKey="main" stroke="#3cb371" strokeWidth={2} dot={<CustomizedDot />} isAnimationActive={true}>
                 <LabelList content={<CustomizedLabel />} />
             </Line>

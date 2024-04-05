@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useWeatherInfoContext } from "../WeatherProvider/WeatherProvider";
+import uuid from "react-uuid";
+import CurrentWeatherIcon from "../CurrentWeatherIcon/CurrentWeatherIcon";
 
 const Button = () => {
-  const { prediction, loading, error, currentWeather, handleSubmit } = useWeatherInfoContext();
+  const { prediction, loading, error, currentWeather, handleSubmit, dailyWeather } = useWeatherInfoContext();
 
   // const [prediction, setPrediction] = useState(null);
   // const [loading, setLoading] = useState(false);
@@ -47,10 +49,15 @@ const Button = () => {
         <div>
         {error && <p className="text-red-500">{error}</p>}
         {prediction && (
+          <div className=" flex justify-center items-center space-x-5">
           <p className=" text-4xl font-semibold text-orange-500 my-4">
             {/* Predicted Temperature: */}
              {prediction.toFixed(2)} °C
           </p>
+          <CurrentWeatherIcon key={uuid()} weatherState={dailyWeather[1].weather[0].main} fontSize={40}></CurrentWeatherIcon>
+          </div>
+          
+
         )}
       </div>
       </div>

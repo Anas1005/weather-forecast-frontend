@@ -104,7 +104,7 @@ export default function WeatherProvider({ children }) {
       // const list = dataHourly.list;
       const daily = dataDaily.daily;
       // console.log("Hourly",list);
-      console.log("Daily", daily);
+      // console.log("Daily", daily);
 
       // setWeatherInfo({
       //     name:"Rourkela", temp, humidity, pressure, weatherState:"Clear", daily,
@@ -122,7 +122,7 @@ export default function WeatherProvider({ children }) {
 
   
   const handlePredict = async (data = features) => {
-    console.log("Data", data)
+    // console.log("Data", data)
     setLoading(true); // Set loading to true while predicting
     try {
       const response = await axios.post(
