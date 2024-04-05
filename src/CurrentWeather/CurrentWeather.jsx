@@ -12,7 +12,7 @@ export default function CurrentWeather() {
       {currentWeather.ready ? (
         <>
           {/* <CurrentWeatherIcon weatherState={weatherState} /> */}
-          <span>{currentWeather.temp} &deg;</span>
+          <span>{currentWeather.temp} ° C</span>
         </>
       ) : (
         <div className="animate-spin rounded-full h-[3rem] w-[3rem] border-t-2 border-b-2 border-gray-900"></div>
