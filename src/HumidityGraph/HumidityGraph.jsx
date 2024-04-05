@@ -5,12 +5,20 @@ import { Navigation } from "swiper";
 
 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+// const formatXAxis = (data) => {
+//     const date = new Date(data * 1000 - 86400*1000*6);
+//     const dayOfWeek = daysOfWeek[date.getDay()];
+//     const formattedDate = `${date.getDate()}/${date.getMonth() + 1}`;
+//     return `${dayOfWeek}, ${formattedDate}`;
+// };
+
 const formatXAxis = (data) => {
-    const date = new Date(data * 1000 - 86400*1000*6);
-    const dayOfWeek = daysOfWeek[date.getDay()];
+    const date = new Date(data * 1000);
+    const hour = date.getHours();
     const formattedDate = `${date.getDate()}/${date.getMonth() + 1}`;
-    return `${dayOfWeek}, ${formattedDate}`;
+    return ` ${hour}:00`;
 };
+
 const CustomizedLabel = function({x,y,value}){
     return(
         <text x={x+30} y={y-2} fontSize="15" fontWeight={600} textAnchor="middle">
@@ -19,14 +27,14 @@ const CustomizedLabel = function({x,y,value}){
     )
 }
 function BarGraph({num}){
-    const {dailyWeather} = useWeatherInfoContext()
+    const {dailyWeather, hourlyWeather} = useWeatherInfoContext()
 
     return(
         <BarChart
         width={960}
         height={200}
-        data={dailyWeather?.slice(num*7 , (num+1)*7+ 1).map(({dt,humidity})=>({
-            dt, main:humidity
+        data={hourlyWeather?.slice(num*10 , (num+1)*10).map(({dt,main})=>({
+            dt, main:main.humidity
         }))}
         margin={{top:30, right:30, left:30, bottom:10}}
         >

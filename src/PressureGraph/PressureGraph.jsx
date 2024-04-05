@@ -4,12 +4,19 @@ import { useWeatherInfoContext } from "../WeatherProvider/WeatherProvider"
 
 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+// const formatXAxis = (data) => {
+//     const date = new Date(data * 1000 - 86400*1000*6);
+//     const dayOfWeek = daysOfWeek[date.getDay()];
+//     const formattedDate = `${date.getDate()}/${date.getMonth() + 1}`;
+//     return `${dayOfWeek}, ${formattedDate}`;
+// };
 const formatXAxis = (data) => {
-    const date = new Date(data * 1000 - 86400*1000*6);
-    const dayOfWeek = daysOfWeek[date.getDay()];
+    const date = new Date(data * 1000);
+    const hour = date.getHours();
     const formattedDate = `${date.getDate()}/${date.getMonth() + 1}`;
-    return `${dayOfWeek}, ${formattedDate}`;
+    return ` ${hour}:00`;
 };
+
 
 // function WindDirection({degree, ...props}){
 
@@ -56,14 +63,14 @@ const CustomizedLabel = function({x,y,value}){
 }
 
 function BarGraph({num}){
-    const {dailyWeather} = useWeatherInfoContext()
+    const {dailyWeather, hourlyWeather} = useWeatherInfoContext()
 
     return(
         <BarChart
         width={960}
         height={200}
-        data={dailyWeather?.slice(num*7 , (num+1)*7 + 1).map(({dt,pressure})=>({
-            dt, pressure
+        data={hourlyWeather?.slice(num*12 , (num+1)*12 ).map(({dt,main})=>({
+            dt, pressure:main.pressure
         }))}
         margin={{top:50, right:30, left:30, bottom:5}}
         >

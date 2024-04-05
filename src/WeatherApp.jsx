@@ -2,11 +2,14 @@ import CurrentWeather from "./CurrentWeather/CurrentWeather";
 import "../src/style.css";
 // import TempInfo from "./Tempinfo/TempInfo";
 import ExtraInfo from "./ExtraInfo/ExtraInfo";
+import { useWeatherInfoContext } from "./WeatherProvider/WeatherProvider";
 import WeatherTab from "./WeatherTab/WeatherTab";
 import Button from "./ButtonPro/Button";
+import HourlyButton from "./ButtonPro/HourlyButton";
 // import CountrySelection from "./CountrySelect/CountrySelection";
 
 export default function WeatherApp() {
+  const { showWeatherTab } = useWeatherInfoContext();
   return (
     <>
       {/* <CountrySelection></CountrySelection> */}
@@ -14,8 +17,17 @@ export default function WeatherApp() {
         <CurrentWeather></CurrentWeather>
         {/* <TempInfo></TempInfo> */}
         <ExtraInfo></ExtraInfo>
-        <WeatherTab></WeatherTab>
+        {
+          showWeatherTab && 
+          <WeatherTab></WeatherTab>
+        }
+
+        <div className=" flex flex-col justify-center items-center mx-auto space-y-6">
+
+        {!showWeatherTab && <HourlyButton/>}
+       
         <Button />
+        </div>
       </div>
     </>
   );

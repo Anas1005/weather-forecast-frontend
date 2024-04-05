@@ -18,6 +18,8 @@ export default function WeatherProvider({ children }) {
   const [currentWeather, setCurrrentWeather] = useState({ ready: false });
   const [features, setFeatures] = useState(null);
   const [dailyWeather, setDailyWeather] = useState([]);
+  const [hourlyWeather, setHourlyWeather] = useState([]);
+  const[showWeatherTab, setShowWeatherTab] = useState(false);
   const [prediction, setPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -59,7 +61,7 @@ export default function WeatherProvider({ children }) {
         pressure: weatherData.pressure,
         windspeedKmph: 13,
       }
-      handlePredict(data);
+      // handlePredict(data);
       setFeatures({
         maxtempC: weatherData.temperature,
         mintempC: weatherData.temperature,
@@ -95,21 +97,22 @@ export default function WeatherProvider({ children }) {
 
       // console.log("Current", data);
 
-      // const hourlyWeatherInfoAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${REACT_APP_WEATHER_API_KEY}&units=metric`;
+       const hourlyWeatherInfoAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${22.2309}&lon=${84.8679}&appid=${REACT_APP_WEATHER_API_KEY}&units=metric`;
       const dailyWeatherInfoAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${22.2309}&lon=${84.8679}&appid=${REACT_APP_WEATHER_API_KEY}&units=metric`;
-      // const hourlyWeatherInfo = await fetch(hourlyWeatherInfoAPI)
+       const hourlyWeatherInfo = await fetch(hourlyWeatherInfoAPI)
       const dailyWeatherInfo = await fetch(dailyWeatherInfoAPI);
-      // const dataHourly = await hourlyWeatherInfo.json();
+       const dataHourly = await hourlyWeatherInfo.json();
       const dataDaily = await dailyWeatherInfo.json();
-      // const list = dataHourly.list;
+      const hourly = dataHourly.list;
       const daily = dataDaily.daily;
-      // console.log("Hourly",list);
+      console.log("Hourly",hourly);
       // console.log("Daily", daily);
 
       // setWeatherInfo({
       //     name:"Rourkela", temp, humidity, pressure, weatherState:"Clear", daily,
       // })
       setDailyWeather(daily);
+      setHourlyWeather(hourly);
     } catch (error) {
       console.error(error);
     }
@@ -142,10 +145,14 @@ export default function WeatherProvider({ children }) {
     handlePredict();
   };
 
+  const handleHourlyData = async() => {
+    setShowWeatherTab(true);
+  }
+
 
   return (
     <WeatherContext.Provider
-      value={{ currentWeather, prediction, loading, error, handleSubmit, dailyWeather, setCountryName }}
+      value={{ currentWeather, prediction, loading, error, handleSubmit, dailyWeather, hourlyWeather, setCountryName , handleHourlyData, showWeatherTab}}
     >
       {children}
     </WeatherContext.Provider>
