@@ -9,25 +9,34 @@ import HourlyButton from "./ButtonPro/HourlyButton";
 // import CountrySelection from "./CountrySelect/CountrySelection";
 
 export default function WeatherApp() {
-  const { showWeatherTab } = useWeatherInfoContext();
+  const { futureTab } = useWeatherInfoContext();
   return (
     <>
-      {/* <CountrySelection></CountrySelection> */}
       <div className="containerBox ">
         <CurrentWeather></CurrentWeather>
-        {/* <TempInfo></TempInfo> */}
+
         <ExtraInfo></ExtraInfo>
-        {
-          showWeatherTab && 
-          <WeatherTab></WeatherTab>
-        }
 
-        <div className=" flex flex-col justify-center items-center mx-auto space-y-6">
+        {/* <div> */}
+          {/* <div className=" text-2xl flex justify-center items-center font-bold  "> Past 7 days Analysis</div> */}
+          <WeatherTab type={"Past"} />
+        {/* </div> */}
 
-        {!showWeatherTab && <HourlyButton/>}
-       
-        <Button />
+        <div className=" flex justify-center items-center mx-auto space-x-6">
+          {!futureTab && <HourlyButton />}
+
+          <Button />
         </div>
+        {
+          
+          futureTab &&
+          
+          
+          
+          
+           <WeatherTab type={"Future"} />
+          
+          }
       </div>
     </>
   );

@@ -32,7 +32,7 @@ const Button = () => {
     
     
       {currentWeather.ready && (
-        <div>
+        <div className="">
         <button
           onClick={handleSubmit}
           className={`bg-blue-500 text-white font-semibold py-2 px-4 h-[4rem] w-[12rem] rounded hover:bg-blue-600 transition duration-300 ${

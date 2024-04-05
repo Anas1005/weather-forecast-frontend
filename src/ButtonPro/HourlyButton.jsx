@@ -45,7 +45,7 @@ const HourlyButton = () => {
  }`}
             // disabled={loading}
           >
-            <span className="text-xl">Predict Hourly Data</span>
+            <span className="text-xl">See 24-hour forcast</span>
           </button>
           <div></div>
         </div>

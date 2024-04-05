@@ -19,7 +19,7 @@ export default function WeatherProvider({ children }) {
   const [features, setFeatures] = useState(null);
   const [dailyWeather, setDailyWeather] = useState([]);
   const [hourlyWeather, setHourlyWeather] = useState([]);
-  const[showWeatherTab, setShowWeatherTab] = useState(false);
+  const[futureTab, setFutureTab] = useState(false);
   const [prediction, setPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -106,7 +106,7 @@ export default function WeatherProvider({ children }) {
       const hourly = dataHourly.list;
       const daily = dataDaily.daily;
       console.log("Hourly",hourly);
-      // console.log("Daily", daily);
+      console.log("Daily", daily);
 
       // setWeatherInfo({
       //     name:"Rourkela", temp, humidity, pressure, weatherState:"Clear", daily,
@@ -146,13 +146,13 @@ export default function WeatherProvider({ children }) {
   };
 
   const handleHourlyData = async() => {
-    setShowWeatherTab(true);
+    setFutureTab(true);
   }
 
 
   return (
     <WeatherContext.Provider
-      value={{ currentWeather, prediction, loading, error, handleSubmit, dailyWeather, hourlyWeather, setCountryName , handleHourlyData, showWeatherTab}}
+      value={{ currentWeather, prediction, loading, error, handleSubmit, dailyWeather, hourlyWeather, setCountryName , handleHourlyData, futureTab}}
     >
       {children}
     </WeatherContext.Provider>

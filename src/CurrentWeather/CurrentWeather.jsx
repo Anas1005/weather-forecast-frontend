@@ -6,8 +6,8 @@ export default function CurrentWeather() {
   const { currentWeather } = useWeatherInfoContext();
 
   return (
-    <div className="weather">
-      {"Rourkela"} &nbsp;/
+    <div className="weather flex flex-col">
+      {"Rourkela"} &nbsp;
       {/* Use conditional rendering to display either temperature or loader */}
       {currentWeather.ready ? (
         <>
