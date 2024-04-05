@@ -23,9 +23,10 @@ const CustomizedLabel = function ({ x, y, value }) {
       x={x + 30}
       y={y - 2}
       dy={0}
-      fontSize="15"
-      fontWeight={600}
+      fontSize="20"
+      fontWeight={500}
       textAnchor="middle"
+      fill="white"
     >
       {value} Pa
     </text>
@@ -50,13 +51,14 @@ function BarGraph({ num, type }) {
       >
         <XAxis
           dataKey="dt"
-          fontSize={15}
-          fontWeight={600}
+          fontSize={20}
+          fontWeight={500}
           tickFormatter={formatXAxisFuture}
+          tick={{ fill: "white" }}
         ></XAxis>
         <Bar
           dataKey="pressure"
-          fill="#00DD93"
+          fill="#2C6CFF"
           isAnimationActive={false}
           label={<CustomizedLabel />}
         >
@@ -79,13 +81,14 @@ function BarGraph({ num, type }) {
         >
           <XAxis
             dataKey="dt"
-            fontSize={15}
-            fontWeight={600}
+            fontSize={20}
+            fontWeight={500}
             tickFormatter={formatXAxisPast}
+            tick={{ fill: "white" }}
           ></XAxis>
           <Bar
             dataKey="pressure"
-            fill="#00DD93"
+            fill="#2C6CFF"
             isAnimationActive={false}
             label={<CustomizedLabel />}
           >

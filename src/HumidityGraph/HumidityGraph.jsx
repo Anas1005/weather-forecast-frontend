@@ -23,9 +23,10 @@ const CustomizedLabel = function ({ x, y, value }) {
     <text
       x={x + 30}
       y={y - 2}
-      fontSize="15"
-      fontWeight={600}
+      fontSize="20"
+      fontWeight={500}
       textAnchor="middle"
+      fill="white"
     >
       {value}%
     </text>
@@ -49,8 +50,9 @@ function BarGraph({ num, type }) {
       >
         <XAxis
           dataKey="dt"
-          fontSize={15}
-          fontWeight={600}
+          fontSize={20}
+          fontWeight={500}
+          tick={{ fill: "white" }}
           tickFormatter={formatXAxisFuture}
         ></XAxis>
         <Bar
@@ -76,9 +78,10 @@ function BarGraph({ num, type }) {
       >
         <XAxis
           dataKey="dt"
-          fontSize={15}
-          fontWeight={600}
+          fontSize={20}
+          fontWeight={500}
           tickFormatter={formatXAxisPast}
+          tick={{ fill: "white" }}
         ></XAxis>
         <Bar
           dataKey="main"

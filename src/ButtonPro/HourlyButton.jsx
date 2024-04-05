@@ -3,7 +3,7 @@ import axios from "axios";
 import { useWeatherInfoContext } from "../WeatherProvider/WeatherProvider";
 import uuid from "react-uuid";
 import CurrentWeatherIcon from "../CurrentWeatherIcon/CurrentWeatherIcon";
-
+import "./Buttons.css";
 const HourlyButton = () => {
   const {
     prediction,
@@ -14,6 +14,7 @@ const HourlyButton = () => {
     dailyWeather,
     handleHourlyData,
   } = useWeatherInfoContext();
+  
 
   // const [prediction, setPrediction] = useState(null);
   // const [loading, setLoading] = useState(false);
@@ -41,7 +42,7 @@ const HourlyButton = () => {
         <div>
           <button
             onClick={handleHourlyData}
-            className={`bg-blue-500 text-white font-semibold py-2 px-4 h-[4rem] w-[12rem] rounded hover:bg-blue-600 transition duration-300 
+            className={`predict text-white font-semibold py-2 px-4 h-[4rem] w-[12rem] rounded hover:bg-[#0965c1] transition duration-300 
  }`}
             // disabled={loading}
           >

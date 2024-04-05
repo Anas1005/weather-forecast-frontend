@@ -1,5 +1,5 @@
 import { useWeatherInfoContext } from "../WeatherProvider/WeatherProvider";
-import { LabelList, Line, LineChart, XAxis } from "recharts";
+import { LabelList, Line, LineChart, XAxis, YAxis } from "recharts";
 import CurrentWeatherIcon from "../CurrentWeatherIcon/CurrentWeatherIcon";
 import uuid from "react-uuid";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -35,9 +35,10 @@ const CustomizedLabel = ({ x, y, value }) => (
     x={x}
     y={y}
     dy={-4}
-    fontSize={17.5}
-    fontWeight={600}
+    fontSize={20}
+    fontWeight={400}
     textAnchor="middle"
+    fill="white"
   >
     {value}°
   </text>
@@ -68,13 +69,15 @@ function Linegraph({ num, type }) {
       >
         <XAxis
           dataKey="dt"
-          fontSize={17.5}
-          fontWeight={600}
+          fontSize={20}
+          fontWeight={500}
+          tick={{ fill: "white" }}
           tickFormatter={formatXAxisFuture}
         ></XAxis>
+        {/* <YAxis tick={{ fill: "white" }} /> */}
         <Line
           dataKey="main"
-          stroke="#3cb371"
+          stroke="#ffc20b"
           strokeWidth={2}
           dot={<CustomizedDot />}
           isAnimationActive={true}
@@ -104,14 +107,16 @@ function Linegraph({ num, type }) {
       >
         <XAxis
           dataKey="dt"
-          fontSize={17.5}
-          fontWeight={600}
+          fontSize={20}
+          fontWeight={500}
           tickFormatter={formatXAxisPast}
+          tick={{ fill: "white" }}
         ></XAxis>
+         {/* <YAxis tick={{ fill: "white" }} /> */}
         <Line
           dataKey="main"
-          stroke="#3cb371"
-          strokeWidth={2}
+          stroke="orange"
+          strokeWidth={3}
           dot={<CustomizedDot />}
           isAnimationActive={true}
         >
