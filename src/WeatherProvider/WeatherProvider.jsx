@@ -105,8 +105,8 @@ export default function WeatherProvider({ children }) {
       const dataDaily = await dailyWeatherInfo.json();
       const hourly = dataHourly.list;
       const daily = dataDaily.daily;
-      console.log("Hourly",hourly);
-      console.log("Daily", daily);
+      // console.log("Hourly",hourly);
+      // console.log("Daily", daily);
 
       // setWeatherInfo({
       //     name:"Rourkela", temp, humidity, pressure, weatherState:"Clear", daily,
