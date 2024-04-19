@@ -25,7 +25,7 @@ export default function WeatherApp() {
             <div className=" flex justify-center items-center mx-auto space-x-6">
               {!futureTab && <HourlyButton />}
 
-              <Button />
+              {/* <Button /> */}
             </div>
             {futureTab && <WeatherTab type={"Future"} />}
           </>

@@ -39,6 +39,8 @@ export default function WeatherProvider({ children }) {
   useEffect(() => {
     newSocket.on("sensorData", (weatherData) => {
       console.log("Sensor...", weatherData);
+      // setCurrrentWeather((prev) => ({ ...prev, ready: false }));
+      
       setCurrrentWeather({
         ready: true,
         name: "Rourkela",
